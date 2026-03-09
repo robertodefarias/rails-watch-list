@@ -1,12 +1,23 @@
-<div class="container">
-
 <h1>My Lists</h1>
 
-<ul>
-  <% @lists.each do |list| %>
-    <li><%= link_to list.name, list_path(list) %></li>
-  <% end %>
-</ul>
+<div class="cards">
 
-<%= link_to "Create a new list", new_list_path %>
+  <% @lists.each do |list| %>
+
+    <%= link_to list_path(list),
+        class: "card-category",
+        style: "background-image:
+        linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+        url(https://picsum.photos/400/300?random=#{list.id})" do %>
+
+      <%= list.name %>
+
+    <% end %>
+
+  <% end %>
+
 </div>
+
+<br>
+
+<%= link_to "Create a new list", new_list_path, class: "btn btn-primary" %>
