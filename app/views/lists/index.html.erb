@@ -1,23 +1,32 @@
-<h1>My Lists</h1>
+<div class="netflix-home">
+  <div class="home-hero">
+    <div class="home-hero-overlay">
+      <div class="container">
+        <h1 class="home-title">My Lists</h1>
+        <p class="home-subtitle">Create and organize your movie collections</p>
 
-<div class="cards">
+        <%= link_to "Create a new list", new_list_path, class: "netflix-main-btn" %>
+      </div>
+    </div>
+  </div>
 
-  <% @lists.each do |list| %>
+  <div class="container py-5">
+    <div class="cards">
 
-    <%= link_to list_path(list),
-        class: "card-category",
-        style: "background-image:
-        linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
-        url(https://picsum.photos/400/300?random=#{list.id})" do %>
+      <% @lists.each do |list| %>
 
-      <%= list.name %>
+        <%= link_to list_path(list),
+          class: "card-category",
+          style: "background-image:
+          linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)),
+          url(https://picsum.photos/600/400?random=#{list.id})" do %>
 
-    <% end %>
+          <span><%= list.name %></span>
 
-  <% end %>
+        <% end %>
 
+      <% end %>
+
+    </div>
+  </div>
 </div>
-
-<br>
-
-<%= link_to "Create a new list", new_list_path, class: "btn btn-primary" %>

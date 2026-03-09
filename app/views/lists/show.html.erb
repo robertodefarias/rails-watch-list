@@ -1,16 +1,36 @@
-<h1><%= @list.name %></h1>
+<div class="netflix-list-page">
+  <div class="list-hero">
+    <div class="list-hero-overlay">
+      <div class="container">
+        <h1><%= @list.name %></h1>
+        <p><%= pluralize(@list.bookmarks.count, "movie") %> in this list</p>
+        <%= link_to "Add a movie", new_list_bookmark_path(@list), class: "netflix-main-btn" %>
+      </div>
+    </div>
+  </div>
 
-<ul>
-  <% @list.bookmarks.each do |bookmark| %>
-    <li>
-      <%= bookmark.movie.title %> - <%= bookmark.comment %>
+  <div class="container my-5">
+    <div class="movie-grid">
+      <% @list.bookmarks.each do |bookmark| %>
+        <div class="movie-netflix-card">
+          <img src="<%= bookmark.movie.poster_url %>" alt="<%= bookmark.movie.title %>">
 
-      <%= link_to "Delete",
-      bookmark_path(bookmark),
-      data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+          <div class="movie-netflix-content">
+            <div class="movie-title-row">
+              <h2><%= bookmark.movie.title %></h2>
+              <span class="movie-rating"><%= bookmark.movie.rating %> ★</span>
+            </div>
 
-    </li>
-  <% end %>
-</ul>
+            <p class="movie-overview"><%= bookmark.movie.overview %></p>
+            <p class="movie-comment">“<%= bookmark.comment %>”</p>
 
-<%= link_to "Add a movie", new_list_bookmark_path(@list) %>
+            <%= link_to "Delete",
+              bookmark_path(bookmark),
+              data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+              class: "netflix-delete-btn" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
