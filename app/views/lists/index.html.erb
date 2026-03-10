@@ -16,10 +16,10 @@
       <% @lists.each do |list| %>
 
         <%= link_to list_path(list),
-          class: "card-category",
-          style: "background-image:
-          linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)),
-          url(https://picsum.photos/600/400?random=#{list.id})" do %>
+  class: "card-category",
+  style: "background-image:
+  linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)),
+  url(<%= list.photo.attached? ? cl_image_path(list.photo.key) : 'https://picsum.photos/600/400?random=' + list.id.to_s %>)" do %>
 
           <span><%= list.name %></span>
 
