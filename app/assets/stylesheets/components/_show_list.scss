@@ -153,23 +153,3 @@
   }
 }
 
-.hero-buttons{
-  display:flex;
-  gap:12px;
-  margin-top:10px;
-}
-
-.netflix-secondary-btn{
-  background:transparent;
-  border:1px solid #fff;
-  color:white;
-  padding:10px 16px;
-  border-radius:6px;
-  text-decoration:none;
-  transition:0.3s;
-}
-
-.netflix-secondary-btn:hover{
-  background:white;
-  color:black;
-}
