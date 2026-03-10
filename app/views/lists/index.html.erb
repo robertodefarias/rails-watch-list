@@ -12,21 +12,15 @@
 
   <div class="container py-5">
     <div class="cards">
-
       <% @lists.each do |list| %>
+        <% image_url = list.photo.attached? ? cl_image_path(list.photo.key) : "https://picsum.photos/600/400?random=#{list.id}" %>
 
         <%= link_to list_path(list),
-  class: "card-category",
-  style: "background-image:
-  linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)),
-  url(<%= list.photo.attached? ? cl_image_path(list.photo.key) : 'https://picsum.photos/600/400?random=' + list.id.to_s %>)" do %>
-
+          class: "card-category",
+          style: "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url(#{image_url})" do %>
           <span><%= list.name %></span>
-
         <% end %>
-
       <% end %>
-
     </div>
   </div>
 </div>

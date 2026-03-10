@@ -1,5 +1,5 @@
 <div class="netflix-list-page">
-  <div class="list-hero">
+  <div class="list-hero" style="background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.75)), url(<%= @list.photo.attached? ? cl_image_path(@list.photo.key) : 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1600&q=80' %>);">
     <div class="list-hero-overlay">
       <div class="container">
         <h1><%= @list.name %></h1>
@@ -12,6 +12,32 @@
       </div>
     </div>
   </div>
+
+  <div class="container my-5">
+    <div class="movie-grid">
+      <% @list.bookmarks.each do |bookmark| %>
+        <div class="movie-netflix-card">
+          <img src="<%= bookmark.movie.poster_url %>" alt="<%= bookmark.movie.title %>">
+
+          <div class="movie-netflix-content">
+            <div class="movie-title-row">
+              <h2><%= bookmark.movie.title %></h2>
+              <span class="movie-rating"><%= bookmark.movie.rating %> ★</span>
+            </div>
+
+            <p class="movie-overview"><%= bookmark.movie.overview %></p>
+            <p class="movie-comment">“<%= bookmark.comment %>”</p>
+
+            <%= link_to "Delete",
+              bookmark_path(bookmark),
+              data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+              class: "netflix-delete-btn" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
 
   <div class="container my-5">
     <div class="movie-grid">
