@@ -2,12 +2,15 @@
   <div class="list-hero">
     <div class="list-hero-overlay">
       <div class="container">
-        <h1><%= @list.name %></h1>
-        <p><%= pluralize(@list.bookmarks.count, "movie") %> in this list</p>
-        <%= link_to "Add a movie", new_list_bookmark_path(@list), class: "netflix-main-btn" %>
-      </div>
-    </div>
+        <div class="container">
+  <h1><%= @list.name %></h1>
+  <p><%= pluralize(@list.bookmarks.count, "movie") %> in this list</p>
+
+  <div class="hero-buttons">
+    <%= link_to "Add a movie", new_list_bookmark_path(@list), class: "netflix-main-btn" %>
+    <%= link_to "← Back to lists", lists_path, class: "netflix-secondary-btn" %>
   </div>
+</div>
 
   <div class="container my-5">
     <div class="movie-grid">
